@@ -184,7 +184,30 @@ CrossEntropyLoss には教師データと出力の誤差を計算させ、KLDivL
 
 学習は dialog_sysディレクトリで main.pyを実行します。
 ```
-python main.py --model-path params/model.pth --epoch-num 20 --batch-size 64 --enc-len 128 --max-len 64 --lr 1e-4 --beta1 0.9 --beta2 0.98 --criterion-reduction batchmean --adamw-eps 1e-9 --disp-progress --train-data data/train --eval-data data/eval --bert-path resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/pytorch_model.bin --bert-config resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/bert_config.json --bert-vocab resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/vocab.txt --num-layer 2 --use-bidirectional --cross-loss-coef 1 --mse-loss-coef 1 --bert-hsize 768 --hidden-size 128 --lstm-hidden-size 128
+python main.py \
+    --model-path params/model.pth \
+    --epoch-num 20 \
+    --batch-size 64 \
+    --enc-len 128 \
+    --max-len 64 \
+    --lr 1e-4 \
+    --beta1 0.9 \
+    --beta2 0.98 \
+    --criterion-reduction batchmean \
+    --adamw-eps 1e-9 \
+    --disp-progress \
+    --train-data data/train \
+    --eval-data data/eval \
+    --bert-path resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/pytorch_model.bin \
+    --bert-config resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/bert_config.json \
+    --bert-vocab resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/vocab.txt \
+    --num-layer 2 \
+    --use-bidirectional \
+    --cross-loss-coef 1 \
+    --mse-loss-coef 1 \
+    --bert-hsize 768 \
+    --hidden-size 128 \
+    --lstm-hidden-size 128
 ```
 
 ![FNF_loss.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/674845/5d1955b9-c9f3-15ab-c501-bd44e0ab7d81.png)
@@ -205,7 +228,24 @@ BJtokenizer.py で実装した remove_duplication() は、Seq2Seqモデルが発
 ## 5.1. 対話
 対話を行うには、dialog_sysディレクトリで dialog.pyを実行します。
 ```
-python dialog.py --model-path params/mode.pth --enc-len 128 --max-len 64 --bert-path resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/pytorch_model.bin --bert-config resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/bert_config.json --bert-vocab resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/vocab.txt --num-layer 2 --use-bidirectional --bert-hsize 768 --hidden-size 128 --lstm-hidden-size 128 --used-ngram-model ngram/scoring/models/ngram.binary --remove-limit -5.0 --resp-gen 50 --length-dist-mean 15 --length-dist-var 7 --length-dist-scale 1 
+python dialog.py \
+    --model-path params/mode.pth \
+    --enc-len 128 \
+    --max-len 64 \
+    --bert-path resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/pytorch_model.bin \
+    --bert-config resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/bert_config.json \
+    --bert-vocab resource/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM/vocab.txt \
+    --num-layer 2 \
+    --use-bidirectional \
+    --bert-hsize 768 \
+    --hidden-size 128 \
+    --lstm-hidden-size 128 \
+    --used-ngram-model ngram/scoring/models/ngram.binary \
+    --remove-limit -5.0 \
+    --resp-gen 50 \
+    --length-dist-mean 15 \
+    --length-dist-var 7 \
+    --length-dist-scale 1 
 ```
 ```
 >>おはようございます
